@@ -29,7 +29,7 @@ type State = {
   externalWindow: Window | null;
 };
 
-class StyledWindowPortal extends React.PureComponent<Props, State> {
+class ReactNewWindowStyles extends React.PureComponent<Props, State> {
   static defaultProps = {
     onClose: () => {},
     title: 'New Window',
@@ -140,7 +140,7 @@ class StyledWindowPortal extends React.PureComponent<Props, State> {
 
   windowPropsToString() {
     const mergedProps: { [key: string]: any } = {
-      ...StyledWindowPortal.defaultProps.windowProps,
+      ...ReactNewWindowStyles.defaultProps.windowProps,
       ...this.props.windowProps,
     };
 
@@ -220,4 +220,4 @@ function copyStyles(source: any, target: any) {
 }
 
 
-export { StyledWindowPortal };
+export { ReactNewWindowStyles };

@@ -1,1 +1,1 @@
-export * from './StyledWindowPortal';
+export * from './ReactNewWindowStyles';
