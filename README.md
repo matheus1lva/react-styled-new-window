@@ -1,6 +1,25 @@
-# styled-window-portal
+# react-new-window-styles
+
+This is a fork of `react-new-window` + `styled-window-portal`. Those 2 modules are really great when managing new windows, but those two together were lacking features! We needed a more composed solution, to handle both scenarios!
+
+So i decided to merge those two together, where we can have styles from `styled-components` + styles from pure css added onto the page!
+
+## description
 
 If a React portal is used to render to a new window, then styled-components will break as the styles declared are still being appended to the head of the original document. This package combats this by changing the inject point of the style to the head of the new window and copies globally injected styles to the new window.
+
+We need a way to open new windows where we have general styles being added onto the page, without having so much pain!
+
+
+## Installation
+
+```sh
+yarn add -D react-new-window-styles
+```
+
+```sh
+npm i -D react-new-window-styles
+```
 
 ## Example
 
@@ -8,7 +27,7 @@ If a React portal is used to render to a new window, then styled-components will
 import React from 'react';
 import { render } from 'react-dom';
 import styled, { createGlobalStyle } from 'styled-components';
-import { StyledWindowPortal } from '../../src';
+import { ReactNewWindowStyles } from 'react-new-window-styles';
 
 const MyDiv = styled.div`
   background: blue;
@@ -47,7 +66,7 @@ class App extends React.Component<any, State> {
           Click me to {this.state.window ? 'close' : 'open'} the window
         </button>
         {this.state.window && (
-          <StyledWindowPortal
+          <ReactNewWindowStyles
             onClose={() =>
               this.setState({
                 window: false,
@@ -56,7 +75,7 @@ class App extends React.Component<any, State> {
             autoClose
           >
             <MyDiv>Look, it&apos;s blue! There are no borders either.</MyDiv>
-          </StyledWindowPortal>
+          </ReactNewWindowStyles>
         )}
       </div>
     );
@@ -76,6 +95,7 @@ The styled window component can take the following props
 | title       | string   | New Window    | The title of the window                        |
 | name        | string   | ' '           | The target attribute or the name of the window |
 | windowProps | object   |               | See below                                      |
+| copyStyles  | boolean  | false         | copy over styles from the main document to the new window |
 
 ### windowProps
 

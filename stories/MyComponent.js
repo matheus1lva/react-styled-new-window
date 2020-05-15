@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { StyledWindowPortal } from '../src/index';
+import { ReactNewWindowStyles } from '../src/index';
 
 const Div = styled.div`
   background: red;
@@ -36,14 +36,14 @@ export const StyledComponents = () => {
           </p>
   
           {window && (
-            <StyledWindowPortal
+            <ReactNewWindowStyles
               onClose={() =>
                 setWindow(false)
               }
               autoClose={autoClose}
             >
               <Div>fantastic</Div>
-            </StyledWindowPortal>
+            </ReactNewWindowStyles>
           )}
         </div>
       );

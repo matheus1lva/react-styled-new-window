@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledWindowPortal } from '../src/index';
+import { ReactNewWindowStyles } from '../src/index';
 
 
 export const NormalComponents = () => {
@@ -31,7 +31,7 @@ export const NormalComponents = () => {
           </p>
   
           {window && (
-            <StyledWindowPortal
+            <ReactNewWindowStyles
               onClose={() =>
                 setWindow(false)
               }
@@ -39,7 +39,7 @@ export const NormalComponents = () => {
               copyStyles={true}
             >
               <div id={"123123"}>fantastic</div>
-            </StyledWindowPortal>
+            </ReactNewWindowStyles>
           )}
         </div>
       );

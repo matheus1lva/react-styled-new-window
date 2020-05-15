@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { StyledWindowPortal } from '../src/index';
 import { StyledComponents } from './MyComponent';
 
 export default {

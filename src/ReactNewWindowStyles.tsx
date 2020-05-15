@@ -23,6 +23,7 @@ type Props = {
   name?: string;
   windowProps?: WindowProps;
   children: ReactNode;
+  copyStyles: boolean;
 };
 
 type State = {
@@ -34,6 +35,7 @@ class ReactNewWindowStyles extends React.PureComponent<Props, State> {
     onClose: () => {},
     title: 'New Window',
     name: '',
+    copyStyles: false,
     windowProps: {
       toolbar: false,
       location: false,
@@ -82,7 +84,6 @@ class ReactNewWindowStyles extends React.PureComponent<Props, State> {
 
           this.state.externalWindow.document.body.appendChild(this.container);
 
-          // @ts-ignore
           if (this.props.copyStyles) {
             // @ts-ignore
             setTimeout(() => copyStyles(document, this.state.externalWindow.document), 0)
