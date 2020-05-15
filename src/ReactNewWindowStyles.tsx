@@ -86,7 +86,10 @@ class ReactNewWindowStyles extends React.PureComponent<Props, State> {
 
           if (this.props.copyStyles) {
             // @ts-ignore
-            setTimeout(() => copyStyles(document, this.state.externalWindow.document), 0)
+            setTimeout(
+              () => copyStyles(document, this.state.externalWindow.document),
+              0
+            );
           }
 
           // Inject global style
@@ -177,19 +180,19 @@ class ReactNewWindowStyles extends React.PureComponent<Props, State> {
 function copyStyles(source: any, target: any) {
   Array.from(source.styleSheets).forEach((styleSheet: any) => {
     // For <style> elements
-    let rules
+    let rules;
     try {
-      rules = styleSheet.cssRules
+      rules = styleSheet.cssRules;
     } catch (err) {
-      console.error(err)
+      console.error(err);
     }
     if (rules) {
-      const newStyleEl = source.createElement('style')
+      const newStyleEl = source.createElement('style');
 
       // Write the text of each rule into the body of the style element
       Array.from(styleSheet.cssRules).forEach((cssRule: any) => {
-        const { cssText, type } = cssRule
-        let returnText = cssText
+        const { cssText, type } = cssRule;
+        let returnText = cssText;
         // Check if the cssRule type is CSSImportRule (3) or CSSFontFaceRule (5) to handle local imports on a about:blank page
         // '/custom.css' turns to 'http://my-site.com/custom.css'
         if ([3, 5].includes(type)) {
@@ -199,26 +202,25 @@ function copyStyles(source: any, target: any) {
               if (line[1] === '/') {
                 return `${line.slice(0, 1)}${
                   window.location.origin
-                }${line.slice(1)}`
+                }${line.slice(1)}`;
               }
-              return line
+              return line;
             })
-            .join('url(')
+            .join('url(');
         }
-        newStyleEl.appendChild(source.createTextNode(returnText))
-      })
+        newStyleEl.appendChild(source.createTextNode(returnText));
+      });
 
-      target.head.appendChild(newStyleEl)
+      target.head.appendChild(newStyleEl);
     } else if (styleSheet.href) {
       // for <link> elements loading CSS from a URL
-      const newLinkEl = source.createElement('link')
+      const newLinkEl = source.createElement('link');
 
-      newLinkEl.rel = 'stylesheet'
-      newLinkEl.href = styleSheet.href
-      target.head.appendChild(newLinkEl)
+      newLinkEl.rel = 'stylesheet';
+      newLinkEl.href = styleSheet.href;
+      target.head.appendChild(newLinkEl);
     }
-  })
+  });
 }
-
 
 export { ReactNewWindowStyles };
