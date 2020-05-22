@@ -85,8 +85,8 @@ class ReactNewWindowStyles extends React.PureComponent<Props, State> {
           this.state.externalWindow.document.body.appendChild(this.container);
 
           if (this.props.copyStyles) {
-            // @ts-ignore
             setTimeout(
+              // @ts-ignore
               () => copyStyles(document, this.state.externalWindow.document),
               0
             );
